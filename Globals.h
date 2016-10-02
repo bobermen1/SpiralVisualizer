@@ -14,6 +14,10 @@ extern int ScreenHeight;
 
 extern int startNum;
 
+enum generator {PRIMES, FIBONACCI};
+
+extern generator currentGen;
+
 extern vector<ll> numbers;
 
 #endif

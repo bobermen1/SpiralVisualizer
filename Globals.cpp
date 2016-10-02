@@ -11,5 +11,7 @@ int ScreenHeight = 400;
 
 int startNum = 1;
 
+generator currentGen = PRIMES;
+
 //stores the number in the sequence
 vector<ll> numbers;
