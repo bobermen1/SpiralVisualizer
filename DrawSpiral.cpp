@@ -99,7 +99,7 @@ void drawCircleSpiral(ll start)
     }
 
     glBegin(GL_POINTS);
-    for(ll n = 1; n <= end; n++)
+    for(ll n = 1; n <= end && currNumber < numbers.size(); n++)
     {
         if(n + offset == numbers.at(currNumber))
         {
