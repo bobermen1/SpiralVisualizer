@@ -7,6 +7,8 @@
 
 using namespace std;
 
+typedef long long ll;
+
 extern int ScreenWidth;
 extern int ScreenHeight;
 

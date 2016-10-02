@@ -2,6 +2,8 @@
 // include files
 #include <iostream>
 #include "Globals.h"
+#include "DrawSpiral"
+#include "GenerateNumbers"
 using namespace std;
 
 // the GLUT header automatically includes gl.h and glu.h
@@ -55,6 +57,9 @@ void initOpenGL( void )
     glutReshapeFunc( reshape );                         // how to resize window
     glutKeyboardFunc( keyboard );                       // how to handle key presses
     glutMouseFunc( mouseclick );                        // how to handle mouse events
+
+    GeneratePrimes(100*100);
+
 }
 
 /******************************************************************************/
@@ -67,10 +72,7 @@ void display( void )
     // clear the display
     glClear( GL_COLOR_BUFFER_BIT );
 
-    glColor3f(1.0,0.0,1.0);
-    //glRectd(0,0,800,400);
-    //glColor3f(0.0,1.0,1.0);
-    glRectd(0,0,ScreenWidth,ScreenHeight);
+    drawSquareSpiral(1);
 
     // flush graphical output
     glutSwapBuffers();

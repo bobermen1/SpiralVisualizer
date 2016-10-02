@@ -8,6 +8,6 @@
 
 using namespace std;
 
-void drawSquareSpiral();
+void drawSquareSpiral(ll start);
 
 #endif

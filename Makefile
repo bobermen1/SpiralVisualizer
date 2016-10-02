@@ -37,7 +37,7 @@ all:    Spiral
 
 
 
-Spiral: Main.o Globals.o
+Spiral: Main.o DrawSpiral.o GenerateNumbers.o Globals.o
 	$(LINK) -o $@ $^ $(GL_LIBS)
 
 # generic C and C++ targets for OpenGL programs consisting of only one file
