@@ -16,7 +16,7 @@ extern ll numMax;
 
 extern int startNum;
 
-enum generator {PRIMES, TWIN_PRIMES ,FIBONACCI};
+enum generator {PRIMES, TWIN_PRIMES, TRIPLET_PRIMES, FIBONACCI};
 
 extern generator currentGen;
 

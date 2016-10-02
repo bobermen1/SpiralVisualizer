@@ -40,25 +40,48 @@ void GeneratePrimes(ll maxNumber)
     delete [] sieve;
 }
 
-//Generates list a primes that are X appart
-void GenerateXPrimes(ll maxNumber, ll x)
+//Generates list a primes that are X appart nums amount of times
+//example GenerateXPrimes(maxNumber, 1, 1) = all primes
+//        GenerateXPrimes(maxNumber, 2, 2) = twin primes
+//        GenerateXPrimes(maxNumber, 2, 3) = triplet primes
+void GenerateXPrimes(ll maxNumber, ll x, ll nums)
 {
     numbers.clear();
     char * sieve;
     sieve = new (nothrow) char[maxNumber/8+1];
     memset(sieve, 0xFF, (maxNumber/8+1) * sizeof(char));
     ll lp;
+    bool good;
     for(ll i = 2; i <= maxNumber; i++)
     {
         //get bit at position i in array of chars
         if(sieve[i/8] & (0x01 << (i % 8)))
         {
-            lp = i - x;
-            if(lp > (x + 2) && sieve[lp/8] & (0x01 << (lp % 8)))
+            if(i >  pow(x,nums))
             {
-                numbers.push_back(lp);
-                numbers.push_back(i);
+                good = true;
+                lp = i;
+                for(ll j = nums-1; j > 0; j--)
+                {
+                    lp = lp - pow(x, j);
+                    if(!(sieve[lp/8] & (0x01 << (lp % 8))) )
+                    {
+                        good = false;
+                        break;
+                    }
+                }
+                if(good)
+                {
+                    numbers.push_back(i);
+                    lp = i;
+                    for(ll j = nums-1; j > 0; j--)
+                    {
+                        lp = lp - pow(x, j);
+                        numbers.push_back(lp);
+                    }
+                }
             }
+
 
             for(ll j = i + i; j <= maxNumber; j += i)
             {
@@ -69,9 +92,10 @@ void GenerateXPrimes(ll maxNumber, ll x)
     }
     //free up memory
     delete [] sieve;
+    sort(numbers.begin(),numbers.end());
     auto it = unique(numbers.begin(),numbers.end());
     numbers.resize(distance(numbers.begin(),it));
-    sort(numbers.begin(),numbers.end());
+
 
 }
 
@@ -94,13 +118,16 @@ void GenerateNums(ll maxNumber)
 {
     switch (currentGen) {
         case PRIMES:
-            GeneratePrimes(maxNumber);
+            GenerateXPrimes(maxNumber, 1,1);
             break;
         case FIBONACCI:
             GenerateFibonacci(maxNumber);
             break;
         case TWIN_PRIMES:
-            GenerateXPrimes(maxNumber, 2);
+            GenerateXPrimes(maxNumber, 2,2);
+            break;
+        case TRIPLET_PRIMES:
+            GenerateXPrimes(maxNumber, 2,3);
             break;
     }
 }

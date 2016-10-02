@@ -148,6 +148,11 @@ void keyboard( unsigned char key, int x, int y )
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
+        case 'y':
+            currentGen = TRIPLET_PRIMES;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
         case 'f': //fibonacci is boring
             currentGen = FIBONACCI;
             GenerateNums(numMax + startNum - 1);
