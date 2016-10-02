@@ -17,7 +17,6 @@ const int EscapeKey = 27;
 void display();
 void reshape( int w, int h );
 void keyboard( unsigned char key, int x, int y );
-void mouseclick( int button, int state, int x, int y );
 
 // useful graphics function prototypes
 void initOpenGL();
@@ -56,7 +55,6 @@ void initOpenGL( void )
     glutDisplayFunc( display );                         // how to redisplay window
     glutReshapeFunc( reshape );                         // how to resize window
     glutKeyboardFunc( keyboard );                       // how to handle key presses
-    glutMouseFunc( mouseclick );                        // how to handle mouse events
 
 }
 
@@ -169,30 +167,6 @@ void keyboard( unsigned char key, int x, int y )
             setNumMax();
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
-            break;
-    }
-}
-
-
-/******************************************************************************/
-
-// callback function for mouse button click events
-void mouseclick( int button, int state, int x, int y )
-{
-    switch ( button )
-    {
-        case GLUT_LEFT_BUTTON:              // left button
-            if ( state == GLUT_DOWN )           // press
-                cerr << "mouse click: left press at    (" << x << "," << y << ")\n";
-            else if ( state == GLUT_UP )        // release
-                cerr << "mouse click: left release at  (" << x << "," << y << ")\n";
-            break;
-
-        case GLUT_RIGHT_BUTTON:             // right button
-            if ( state == GLUT_DOWN )           // press
-                cerr << "mouse click: right press at   (" << x << "," << y << ")\n";
-            else if ( state == GLUT_UP )        // release
-                cerr << "mouse click: right release at (" << x << "," << y << ")\n";
             break;
     }
 }
