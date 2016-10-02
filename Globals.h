@@ -12,6 +12,8 @@ typedef long long ll;
 extern int ScreenWidth;
 extern int ScreenHeight;
 
+extern ll numMax;
+
 extern int startNum;
 
 enum generator {PRIMES, FIBONACCI};

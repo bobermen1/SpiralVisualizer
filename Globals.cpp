@@ -11,6 +11,8 @@ int ScreenHeight = 400;
 
 int startNum = 1;
 
+ll numMax = ScreenHeight * ScreenHeight;
+
 generator currentGen = PRIMES;
 
 draw drawType = SQUARE_SPIRAL;

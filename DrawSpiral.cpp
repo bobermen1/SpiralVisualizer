@@ -84,20 +84,20 @@ void drawSquareSpiral(ll start)
 
 void drawCircleSpiral(ll start)
 {
-    ll y = ScreenHeight / 2;
-    ll x = ScreenWidth % 2 == 0 ? y - 1 : y;//shift left for even n's
+    double y = ScreenHeight / 2;
+    double x = ScreenWidth % 2 == 0 ? y - 1 : y;//shift left for even n's
     double r = 0.0002;
     double d = M_PI / (360 * 7); //degree increment around circle
     ll offset = start;
     ll end = ScreenWidth / 2 / r;
 
-    ll currNumber;
+    ll currNumber = 0;
     //get to start of numbers
-    while(currNumber < numbers.size() && numbers.at(currNumber) < start)
+    while(currNumber < numbers.size() && numbers.at(currNumber) <= start)
     {
         currNumber++;
     }
-
+    glColor3f(1.0,1.0,1.0);
     glBegin(GL_POINTS);
     for(ll n = 1; n <= end && currNumber < numbers.size(); n++)
     {

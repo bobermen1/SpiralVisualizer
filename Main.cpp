@@ -90,7 +90,8 @@ void reshape( int w, int h )
     ScreenWidth = min(w,h);
     ScreenHeight = min(w,h);
     //cout << ScreenHeight << endl;
-    GenerateNums(ScreenWidth*ScreenHeight + startNum - 1);
+    setNumMax();
+    GenerateNums(numMax + startNum - 1);
 
     // orthographic projection of 3-D scene onto 2-D, maintaining aspect ratio
     glMatrixMode( GL_PROJECTION );      // use an orthographic projection
@@ -129,30 +130,34 @@ void keyboard( unsigned char key, int x, int y )
             break;
         case '=':                               //increase starting number
             startNum++;
-            GenerateNums(ScreenWidth*ScreenHeight + startNum - 1);
+            GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
         case '-':                               //decrease starting number
             startNum = max(0, startNum - 1);
-            GenerateNums(ScreenWidth*ScreenHeight + startNum - 1);
+            GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
         case 'p': //regular primes
             currentGen = PRIMES;
-            GenerateNums(ScreenWidth*ScreenHeight + startNum - 1);
+            GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
         case 'f': //fibonacci is boring
             currentGen = FIBONACCI;
-            GenerateNums(ScreenWidth*ScreenHeight + startNum - 1);
+            GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
         case '1':
             drawType = SQUARE_SPIRAL;
+            setNumMax();
+            GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
         case '2':
             drawType = CIRCLE_SPIRAL;
+            setNumMax();
+            GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
     }

@@ -2,6 +2,19 @@
 
 using namespace std;
 
+//sets the maximum number to be generated
+void setNumMax()
+{
+    switch (drawType) {
+        case SQUARE_SPIRAL:
+            numMax = ScreenWidth * ScreenHeight;
+            break;
+        case CIRCLE_SPIRAL:
+            numMax = ScreenWidth / 2 / .0002;
+            break;
+    }
+}
+
 //Prime generation with sieve using bits in a char array for generation
 void GeneratePrimes(ll maxNumber)
 {

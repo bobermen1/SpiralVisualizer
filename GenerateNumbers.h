@@ -10,6 +10,8 @@
 
 using namespace std;
 
+void setNumMax();
+
 void GeneratePrimes(ll maxNumber);
 void GenerateFibonacci(ll maxNumber);
 void GenerateNums(ll maxNumber);
