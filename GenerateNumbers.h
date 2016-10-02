@@ -16,7 +16,7 @@ void setNumMax();
 
 void GeneratePrimes(ll maxNumber);
 bool twin(ll i, ll j);
-void GenerateTwinPrimes(ll maxNumber);
+void GenerateXPrimes(ll maxNumber, ll x);
 void GenerateFibonacci(ll maxNumber);
 void GenerateNums(ll maxNumber);
 

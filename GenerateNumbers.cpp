@@ -40,8 +40,8 @@ void GeneratePrimes(ll maxNumber)
     delete [] sieve;
 }
 
-
-void GenerateTwinPrimes(ll maxNumber)
+//Generates list a primes that are X appart
+void GenerateXPrimes(ll maxNumber, ll x)
 {
     numbers.clear();
     char * sieve;
@@ -53,8 +53,8 @@ void GenerateTwinPrimes(ll maxNumber)
         //get bit at position i in array of chars
         if(sieve[i/8] & (0x01 << (i % 8)))
         {
-            lp = i - 2;
-            if(sieve[lp/8] & (0x01 << (lp % 8)))
+            lp = i - x;
+            if(lp > (x + 2) && sieve[lp/8] & (0x01 << (lp % 8)))
             {
                 numbers.push_back(lp);
                 numbers.push_back(i);
@@ -100,7 +100,7 @@ void GenerateNums(ll maxNumber)
             GenerateFibonacci(maxNumber);
             break;
         case TWIN_PRIMES:
-            GenerateTwinPrimes(maxNumber);
+            GenerateXPrimes(maxNumber, 2);
             break;
     }
 }
