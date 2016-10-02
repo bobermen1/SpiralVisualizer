@@ -114,14 +114,24 @@ void GenerateFibonacci(ll maxNumber)
 
 }
 
+void PureRandomPercent(ll maxNumber, double percent)
+{
+    numbers.clear();
+    for(ll i = 1; i < maxNumber; i++)
+    {
+        if((rand()%1000) / 1000.0 < percent)
+        {
+            numbers.push_back(i);
+        }
+    }
+}
+
 void GenerateNums(ll maxNumber)
 {
     switch (currentGen) {
+        //Primes
         case PRIMES:
             GenerateXPrimes(maxNumber, 1,1);
-            break;
-        case FIBONACCI:
-            GenerateFibonacci(maxNumber);
             break;
         case TWIN_PRIMES:
             GenerateXPrimes(maxNumber, 2,2);
@@ -137,6 +147,42 @@ void GenerateNums(ll maxNumber)
             break;
         case SEPARATED_BY_TWELVE:
             GenerateXPrimes(maxNumber, 12,2);
+            break;
+
+
+        //random
+        case FIVE_PERCENT:
+            PureRandomPercent(maxNumber, .05);
+            break;
+
+        case TEN_PERCENT:
+            PureRandomPercent(maxNumber, .1);
+            break;
+
+        case FIFTEEN_PERCENT:
+            PureRandomPercent(maxNumber, .15);
+            break;
+
+        case TWENTY_PERCENT:
+            PureRandomPercent(maxNumber, .2);
+            break;
+
+        case THIRTY_PERCENT:
+            PureRandomPercent(maxNumber, .3);
+            break;
+
+        case FOURTY_PERCENT:
+            PureRandomPercent(maxNumber, .4);
+            break;
+
+        case FIFTY_PERCENT:
+            PureRandomPercent(maxNumber, .5);
+            break;
+
+
+        //Other
+        case FIBONACCI:
+            GenerateFibonacci(maxNumber);
             break;
 
     }

@@ -27,6 +27,7 @@ void CreateMenus();
 void MainMenuHandler(int item);
     void TypeMenuHandler(int item);
         void PrimeMenuHandler(int item);
+        void RandomMenuHandler(int item);
     void StyleMenuHandler(int item);
 
 
@@ -67,6 +68,9 @@ void initOpenGL( void )
     glutKeyboardFunc( keyboard );                       // how to handle key presses
     glutMouseFunc( mouseclick);
 
+    //initialize random
+    srand(time(NULL));
+
     CreateMenus();
 
 }
@@ -84,6 +88,15 @@ void CreateMenus()
     glutAddMenuEntry( "Primes Separated By Six", value++);
     glutAddMenuEntry( "Primes Separated By Twelve", value++);
 
+    value = 1;
+    int RandomMenu = glutCreateMenu(RandomMenuHandler);
+    glutAddMenuEntry( " 05%", value++);
+    glutAddMenuEntry( " 10%", value++);
+    glutAddMenuEntry( " 15%", value++);
+    glutAddMenuEntry( " 20%", value++);
+    glutAddMenuEntry( " 30%", value++);
+    glutAddMenuEntry( " 40%", value++);
+    glutAddMenuEntry( " 50%", value++);
 
 
 
@@ -91,6 +104,7 @@ void CreateMenus()
     value = 1;
     int TypeMenu = glutCreateMenu(TypeMenuHandler);
     glutAddSubMenu( "Primes", PrimeMenu);
+    glutAddSubMenu( "Random", RandomMenu);
     glutAddMenuEntry( "Fibonacci", value++);
 
     value = 1;
@@ -105,6 +119,39 @@ void CreateMenus()
     glutAddMenuEntry( "Exit", value++);
 
     glutAttachMenu( GLUT_RIGHT_BUTTON );
+}
+
+void RandomMenuHandler(int item)
+{
+    switch (item)
+    {
+
+        case 1:
+            currentGen = TEN_PERCENT;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 2:
+            currentGen = TWENTY_PERCENT;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 3:
+            currentGen = THIRTY_PERCENT;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 4:
+            currentGen = FOURTY_PERCENT;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 5:
+            currentGen = FIFTY_PERCENT;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+    }
 }
 
 void PrimeMenuHandler(int item)
