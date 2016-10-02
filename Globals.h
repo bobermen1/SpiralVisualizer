@@ -10,4 +10,6 @@ using namespace std;
 extern int ScreenWidth;
 extern int ScreenHeight;
 
+extern vector<ll> numbers;
+
 #endif
