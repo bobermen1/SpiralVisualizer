@@ -25,8 +25,9 @@ void initOpenGL();
 // Menu Functions
 void CreateMenus();
 void MainMenuHandler(int item);
-void TypeMenuHandler(int item);
-void StyleMenuHandler(int item);
+    void TypeMenuHandler(int item);
+        void PrimeMenuHandler(int item);
+    void StyleMenuHandler(int item);
 
 
 
@@ -74,12 +75,16 @@ void initOpenGL( void )
 //menu function
 void CreateMenus()
 {
-    //Menu for selecting number sequence type
     int value = 1;
-    int TypeMenu = glutCreateMenu(TypeMenuHandler);
-    glutAddMenuEntry( "Primes", value++);
+    int PrimeMenu = glutCreateMenu(PrimeMenuHandler);
+    glutAddMenuEntry( "All", value++);
     glutAddMenuEntry( "Twin Primes", value++);
     glutAddMenuEntry( "Triplet Primes", value++);
+
+    //Menu for selecting number sequence type
+    value = 1;
+    int TypeMenu = glutCreateMenu(TypeMenuHandler);
+    glutAddSubMenu( "Primes", PrimeMenu);
     glutAddMenuEntry( "Fibonacci", value++);
 
     value = 1;
@@ -96,8 +101,7 @@ void CreateMenus()
     glutAttachMenu( GLUT_RIGHT_BUTTON );
 }
 
-
-void TypeMenuHandler(int item)
+void PrimeMenuHandler(int item)
 {
     switch (item)
     {
@@ -116,7 +120,14 @@ void TypeMenuHandler(int item)
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
-        case 4: //fibonacci is boring
+    }
+}
+
+void TypeMenuHandler(int item)
+{
+    switch (item)
+    {
+        case 1: //fibonacci is boring
             currentGen = FIBONACCI;
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
