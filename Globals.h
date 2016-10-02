@@ -12,6 +12,8 @@ typedef long long ll;
 extern int ScreenWidth;
 extern int ScreenHeight;
 
+extern int startNum;
+
 extern vector<ll> numbers;
 
 #endif

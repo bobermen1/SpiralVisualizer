@@ -6,6 +6,7 @@ enum direction {RIGHT, UP, LEFT, DOWN};
 
 void drawSquareSpiral(ll start)
 {
+    direction dir = RIGHT;
     ll y = ScreenHeight / 2;
     ll x = ScreenWidth % 2 == 0 ? y - 1 : y;//shift left for even n's
     ll currNumber = 0;
@@ -21,7 +22,7 @@ void drawSquareSpiral(ll start)
     }
     glColor3f(1.0,1.0,1.0);
     glBegin(GL_POINTS);
-    for(ll j = start; j < ScreenWidth * ScreenHeight - 1 + start && j < numbers.size(); j++)
+    for(ll j = start; j <= ScreenWidth * ScreenHeight - 1 + start && currNumber < numbers.size(); j++)
     {
         if(j == numbers.at(currNumber))
         {
@@ -68,13 +69,13 @@ void drawSquareSpiral(ll start)
                 x += 1;
                 break;
             case UP:
-                y -= 1;
+                y += 1;
                 break;
             case LEFT:
                 x -= 1;
                 break;
             case DOWN:
-                y += 1;
+                y -= 1;
                 break;
         }
     }

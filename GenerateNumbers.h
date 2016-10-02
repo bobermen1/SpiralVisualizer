@@ -3,11 +3,16 @@
 
 #include <vector>
 #include <cmath>
+#include <cstring>
 #include <GL/freeglut.h>
 #include "Globals.h"
 
+
 using namespace std;
 
-void generatePrimes(ll maxNumber);
+void GeneratePrimes(ll maxNumber);
+
+void GenerateNums(ll maxNumber);
+
 
 #endif

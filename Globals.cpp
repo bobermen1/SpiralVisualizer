@@ -6,8 +6,10 @@ using namespace std;
 typedef long long ll;
 
 //used for storing working area width and height
-int ScreenWidth = 100;
-int ScreenHeight = 100;
+int ScreenWidth = 400;
+int ScreenHeight = 400;
+
+int startNum = 1;
 
 //stores the number in the sequence
 vector<ll> numbers;

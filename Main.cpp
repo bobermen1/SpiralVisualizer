@@ -2,8 +2,8 @@
 // include files
 #include <iostream>
 #include "Globals.h"
-#include "DrawSpiral"
-#include "GenerateNumbers"
+#include "DrawSpiral.h"
+#include "GenerateNumbers.h"
 using namespace std;
 
 // the GLUT header automatically includes gl.h and glu.h
@@ -58,8 +58,6 @@ void initOpenGL( void )
     glutKeyboardFunc( keyboard );                       // how to handle key presses
     glutMouseFunc( mouseclick );                        // how to handle mouse events
 
-    GeneratePrimes(100*100);
-
 }
 
 /******************************************************************************/
@@ -72,7 +70,7 @@ void display( void )
     // clear the display
     glClear( GL_COLOR_BUFFER_BIT );
 
-    drawSquareSpiral(1);
+    drawSquareSpiral(startNum);
 
     // flush graphical output
     glutSwapBuffers();
@@ -91,6 +89,8 @@ void reshape( int w, int h )
     int yoffset = 0;
     ScreenWidth = min(w,h);
     ScreenHeight = min(w,h);
+    //cout << ScreenHeight << endl;
+    GeneratePrimes(ScreenWidth*ScreenHeight + startNum - 1);
 
     // orthographic projection of 3-D scene onto 2-D, maintaining aspect ratio
     glMatrixMode( GL_PROJECTION );      // use an orthographic projection
@@ -121,6 +121,23 @@ void keyboard( unsigned char key, int x, int y )
     // correct for upside-down screen coordinates
     y = ScreenHeight - y;
     //cerr << "keypress: " << key << " (" << int( key ) << ") at (" << x << "," << y << ")\n";
+    switch ( key )
+    {
+        // Escape quits program
+        case EscapeKey:
+            exit( 0 );
+            break;
+        case '=':                               //increase starting number
+            startNum++;
+            GeneratePrimes(ScreenWidth*ScreenHeight + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case '-':                               //decrease starting number
+            startNum = max(0, startNum - 1);
+            GeneratePrimes(ScreenWidth*ScreenHeight + startNum - 1);
+            glutPostRedisplay();
+            break;
+    }
 }
 
 
