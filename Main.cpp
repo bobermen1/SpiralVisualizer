@@ -80,6 +80,12 @@ void CreateMenus()
     glutAddMenuEntry( "All", value++);
     glutAddMenuEntry( "Twin Primes", value++);
     glutAddMenuEntry( "Triplet Primes", value++);
+    glutAddMenuEntry( "Primes Separated By Four", value++);
+    glutAddMenuEntry( "Primes Separated By Six", value++);
+    glutAddMenuEntry( "Primes Separated By Twelve", value++);
+
+
+
 
     //Menu for selecting number sequence type
     value = 1;
@@ -120,6 +126,23 @@ void PrimeMenuHandler(int item)
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
+        case 4:
+            currentGen = SEPARATED_BY_FOUR;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 5:
+            currentGen = SEPARATED_BY_SIX;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 6:
+            currentGen = SEPARATED_BY_TWELVE;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+
+
     }
 }
 

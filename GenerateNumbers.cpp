@@ -129,5 +129,15 @@ void GenerateNums(ll maxNumber)
         case TRIPLET_PRIMES:
             GenerateXPrimes(maxNumber, 2,3);
             break;
+        case SEPARATED_BY_FOUR:
+            GenerateXPrimes(maxNumber, 4,2);
+            break;
+        case SEPARATED_BY_SIX:
+            GenerateXPrimes(maxNumber, 6,2);
+            break;
+        case SEPARATED_BY_TWELVE:
+            GenerateXPrimes(maxNumber, 12,2);
+            break;
+
     }
 }
