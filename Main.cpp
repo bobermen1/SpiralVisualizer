@@ -17,9 +17,18 @@ const int EscapeKey = 27;
 void display();
 void reshape( int w, int h );
 void keyboard( unsigned char key, int x, int y );
+void mouseclick( int button, int state, int x, int y);
 
 // useful graphics function prototypes
 void initOpenGL();
+
+// Menu Functions
+void CreateMenus();
+void MainMenuHandler(int item);
+void TypeMenuHandler(int item);
+void StyleMenuHandler(int item);
+
+
 
 /******************************************************************************/
 
@@ -55,8 +64,96 @@ void initOpenGL( void )
     glutDisplayFunc( display );                         // how to redisplay window
     glutReshapeFunc( reshape );                         // how to resize window
     glutKeyboardFunc( keyboard );                       // how to handle key presses
+    glutMouseFunc( mouseclick);
+
+    CreateMenus();
 
 }
+
+/******************************************************************************/
+//menu function
+void CreateMenus()
+{
+    //Menu for selecting number sequence type
+    int value = 1;
+    int TypeMenu = glutCreateMenu(TypeMenuHandler);
+    glutAddMenuEntry( "Primes", value++);
+    glutAddMenuEntry( "Twin Primes", value++);
+    glutAddMenuEntry( "Triplet Primes", value++);
+    glutAddMenuEntry( "Fibonacci", value++);
+
+    value = 1;
+    int StyleMenu = glutCreateMenu(StyleMenuHandler);
+    glutAddMenuEntry( "Square Spiral", value++);
+    glutAddMenuEntry( "Cicle Spiral", value++);
+
+    value = 1;
+    int MainMenu =glutCreateMenu(MainMenuHandler);
+    glutAddSubMenu( "Generation", TypeMenu);
+    glutAddSubMenu( "Display", StyleMenu);
+    glutAddMenuEntry( "Exit", value++);
+
+    glutAttachMenu( GLUT_RIGHT_BUTTON );
+}
+
+
+void TypeMenuHandler(int item)
+{
+    switch (item)
+    {
+        case 1: //regular primes
+            currentGen = PRIMES;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 2:
+            currentGen = TWIN_PRIMES;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 3:
+            currentGen = TRIPLET_PRIMES;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 4: //fibonacci is boring
+            currentGen = FIBONACCI;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+    }
+}
+
+void StyleMenuHandler(int item)
+{
+    switch (item)
+    {
+        case 1:
+            drawType = SQUARE_SPIRAL;
+            setNumMax();
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 2:
+            drawType = CIRCLE_SPIRAL;
+            setNumMax();
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+    }
+}
+
+
+void MainMenuHandler(int item)
+{
+    switch (item)
+    {
+        case 1:
+            exit(0);
+            break;
+    }
+}
+
 
 /******************************************************************************/
 /*                          OpenGL callback functions                         */
@@ -169,4 +266,8 @@ void keyboard( unsigned char key, int x, int y )
             glutPostRedisplay();
             break;
     }
+}
+
+void mouseclick( int button, int state, int x, int y)
+{
 }
