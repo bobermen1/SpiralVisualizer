@@ -88,7 +88,7 @@ void CreateMenus()
     glutAddMenuEntry( "Cicle Spiral", value++);
 
     value = 1;
-    int MainMenu =glutCreateMenu(MainMenuHandler);
+    glutCreateMenu(MainMenuHandler);
     glutAddSubMenu( "Generation", TypeMenu);
     glutAddSubMenu( "Display", StyleMenu);
     glutAddMenuEntry( "Exit", value++);

@@ -16,13 +16,13 @@ void drawSquareSpiral(ll start)
     fUp = fDown = y;
 
     //get to start of numbers
-    while(currNumber < numbers.size() && numbers.at(currNumber) < start)
+    while(currNumber < (ll)numbers.size() && numbers.at(currNumber) < start)
     {
         currNumber++;
     }
     glColor3f(1.0,1.0,1.0);
     glBegin(GL_POINTS);
-    for(ll j = start; j <= ScreenWidth * ScreenHeight - 1 + start && currNumber < numbers.size(); j++)
+    for(ll j = start; j <= ScreenWidth * ScreenHeight - 1 + start && currNumber < (ll)numbers.size(); j++)
     {
         if(j == numbers.at(currNumber))
         {
@@ -93,13 +93,13 @@ void drawCircleSpiral(ll start)
 
     ll currNumber = 0;
     //get to start of numbers
-    while(currNumber < numbers.size() && numbers.at(currNumber) <= start)
+    while(currNumber < (ll)numbers.size() && numbers.at(currNumber) <= start)
     {
         currNumber++;
     }
     glColor3f(1.0,1.0,1.0);
     glBegin(GL_POINTS);
-    for(ll n = 1; n <= end && currNumber < numbers.size(); n++)
+    for(ll n = 1; n <= end && currNumber < (ll)numbers.size(); n++)
     {
         if(n + offset == numbers.at(currNumber))
         {
