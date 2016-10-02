@@ -90,7 +90,7 @@ void reshape( int w, int h )
     ScreenWidth = min(w,h);
     ScreenHeight = min(w,h);
     //cout << ScreenHeight << endl;
-    GeneratePrimes(ScreenWidth*ScreenHeight + startNum - 1);
+    GenerateNums(ScreenWidth*ScreenHeight + startNum - 1);
 
     // orthographic projection of 3-D scene onto 2-D, maintaining aspect ratio
     glMatrixMode( GL_PROJECTION );      // use an orthographic projection
@@ -129,12 +129,24 @@ void keyboard( unsigned char key, int x, int y )
             break;
         case '=':                               //increase starting number
             startNum++;
-            GeneratePrimes(ScreenWidth*ScreenHeight + startNum - 1);
+            GenerateNums(ScreenWidth*ScreenHeight + startNum - 1);
             glutPostRedisplay();
             break;
         case '-':                               //decrease starting number
             startNum = max(0, startNum - 1);
-            GeneratePrimes(ScreenWidth*ScreenHeight + startNum - 1);
+            GenerateNums(ScreenWidth*ScreenHeight + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 'p': //regular primes
+        case '1':
+            currentGen = PRIMES;
+            GenerateNums(ScreenWidth*ScreenHeight + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 'f': //fibonacci is boring
+        case '2':
+            currentGen = FIBONACCI;
+            GenerateNums(ScreenWidth*ScreenHeight + startNum - 1);
             glutPostRedisplay();
             break;
     }

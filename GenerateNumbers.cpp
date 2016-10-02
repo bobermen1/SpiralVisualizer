@@ -27,11 +27,29 @@ void GeneratePrimes(ll maxNumber)
     delete [] sieve;
 }
 
-void GenerateNums(ll maxNumber)
+void GenerateFibonacci(ll maxNumber)
 {
     numbers.clear();
-    for(ll i = 1; i < maxNumber; i += 4)
+    numbers.push_back(1);
+    ll first = 1;
+    ll second = 1;
+    while(second <= maxNumber)
     {
-        numbers.push_back(i);
+        numbers.push_back(first+second);
+        second = first + second;
+        first = second - first;
+    }
+
+}
+
+void GenerateNums(ll maxNumber)
+{
+    switch (currentGen) {
+        case PRIMES:
+            GeneratePrimes(maxNumber);
+            break;
+        case FIBONACCI:
+            GenerateFibonacci(maxNumber);
+            break;
     }
 }

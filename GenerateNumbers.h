@@ -11,7 +11,7 @@
 using namespace std;
 
 void GeneratePrimes(ll maxNumber);
-
+void GenerateFibonacci(ll maxNumber);
 void GenerateNums(ll maxNumber);
 
 
