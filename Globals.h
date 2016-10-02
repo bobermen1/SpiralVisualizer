@@ -18,6 +18,10 @@ enum generator {PRIMES, FIBONACCI};
 
 extern generator currentGen;
 
+enum draw {SQUARE_SPIRAL, CIRCLE_SPIRAL};
+
+extern draw drawType;
+
 extern vector<ll> numbers;
 
 #endif

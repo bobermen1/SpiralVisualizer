@@ -70,7 +70,7 @@ void display( void )
     // clear the display
     glClear( GL_COLOR_BUFFER_BIT );
 
-    drawSquareSpiral(startNum);
+    drawNumbers(startNum);
 
     // flush graphical output
     glutSwapBuffers();
@@ -138,15 +138,21 @@ void keyboard( unsigned char key, int x, int y )
             glutPostRedisplay();
             break;
         case 'p': //regular primes
-        case '1':
             currentGen = PRIMES;
             GenerateNums(ScreenWidth*ScreenHeight + startNum - 1);
             glutPostRedisplay();
             break;
         case 'f': //fibonacci is boring
-        case '2':
             currentGen = FIBONACCI;
             GenerateNums(ScreenWidth*ScreenHeight + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case '1':
+            drawType = SQUARE_SPIRAL;
+            glutPostRedisplay();
+            break;
+        case '2':
+            drawType = CIRCLE_SPIRAL;
             glutPostRedisplay();
             break;
     }

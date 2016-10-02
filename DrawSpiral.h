@@ -9,5 +9,8 @@
 using namespace std;
 
 void drawSquareSpiral(ll start);
+void drawCircleSpiral(ll start);
+
+void drawNumbers(ll start);
 
 #endif

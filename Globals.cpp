@@ -13,5 +13,7 @@ int startNum = 1;
 
 generator currentGen = PRIMES;
 
+draw drawType = SQUARE_SPIRAL;
+
 //stores the number in the sequence
 vector<ll> numbers;
