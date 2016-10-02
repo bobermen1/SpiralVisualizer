@@ -90,13 +90,15 @@ void CreateMenus()
 
     value = 1;
     int RandomMenu = glutCreateMenu(RandomMenuHandler);
-    glutAddMenuEntry( " 05%", value++);
+    glutAddMenuEntry( "  5%", value++);
     glutAddMenuEntry( " 10%", value++);
     glutAddMenuEntry( " 15%", value++);
     glutAddMenuEntry( " 20%", value++);
     glutAddMenuEntry( " 30%", value++);
     glutAddMenuEntry( " 40%", value++);
     glutAddMenuEntry( " 50%", value++);
+    glutAddMenuEntry( "Odd Numbers", value++);
+
 
 
 
@@ -125,29 +127,43 @@ void RandomMenuHandler(int item)
 {
     switch (item)
     {
-
         case 1:
-            currentGen = TEN_PERCENT;
+            currentGen = FIVE_PERCENT;
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
         case 2:
-            currentGen = TWENTY_PERCENT;
+            currentGen = TEN_PERCENT;
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
         case 3:
-            currentGen = THIRTY_PERCENT;
+            currentGen = FIFTEEN_PERCENT;
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
         case 4:
-            currentGen = FOURTY_PERCENT;
+            currentGen = TWENTY_PERCENT;
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
         case 5:
+            currentGen = THIRTY_PERCENT;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 6:
+            currentGen = FOURTY_PERCENT;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 7:
             currentGen = FIFTY_PERCENT;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 8:
+            currentGen = RANDOM_ODDS;
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;

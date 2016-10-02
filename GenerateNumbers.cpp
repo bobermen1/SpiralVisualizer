@@ -126,6 +126,25 @@ void PureRandomPercent(ll maxNumber, double percent)
     }
 }
 
+void OddRandomPercent(ll maxNumber)
+{
+    numbers.clear();
+    ll i = 1;
+    ll t;
+    while( i <= maxNumber)
+    {
+        t = (rand() % 10) * 2;
+        i += t;
+        if(i % 5 != 0)
+        {
+            numbers.push_back(i);
+        }
+    }
+    //remove duplicates
+    auto it = unique(numbers.begin(),numbers.end());
+    numbers.resize(distance(numbers.begin(),it));
+}
+
 void GenerateNums(ll maxNumber)
 {
     switch (currentGen) {
@@ -179,6 +198,9 @@ void GenerateNums(ll maxNumber)
             PureRandomPercent(maxNumber, .5);
             break;
 
+        case RANDOM_ODDS:
+            OddRandomPercent(maxNumber);
+            break;
 
         //Other
         case FIBONACCI:
