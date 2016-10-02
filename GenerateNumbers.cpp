@@ -40,6 +40,41 @@ void GeneratePrimes(ll maxNumber)
     delete [] sieve;
 }
 
+
+void GenerateTwinPrimes(ll maxNumber)
+{
+    numbers.clear();
+    char * sieve;
+    sieve = new (nothrow) char[maxNumber/8+1];
+    memset(sieve, 0xFF, (maxNumber/8+1) * sizeof(char));
+    ll lp;
+    for(ll i = 2; i <= maxNumber; i++)
+    {
+        //get bit at position i in array of chars
+        if(sieve[i/8] & (0x01 << (i % 8)))
+        {
+            lp = i - 2;
+            if(sieve[lp/8] & (0x01 << (lp % 8)))
+            {
+                numbers.push_back(lp);
+                numbers.push_back(i);
+            }
+
+            for(ll j = i + i; j <= maxNumber; j += i)
+            {
+                //set false for all positions j in char array
+                sieve[j/8] &= ~(0x01 << (j % 8));
+            }
+        }
+    }
+    //free up memory
+    delete [] sieve;
+    auto it = unique(numbers.begin(),numbers.end());
+    numbers.resize(distance(numbers.begin(),it));
+    sort(numbers.begin(),numbers.end());
+
+}
+
 void GenerateFibonacci(ll maxNumber)
 {
     numbers.clear();
@@ -63,6 +98,9 @@ void GenerateNums(ll maxNumber)
             break;
         case FIBONACCI:
             GenerateFibonacci(maxNumber);
+            break;
+        case TWIN_PRIMES:
+            GenerateTwinPrimes(maxNumber);
             break;
     }
 }
