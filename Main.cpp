@@ -131,7 +131,7 @@ void CreateMenus()
     glutAddMenuEntry( "Happy Numbers",value++);
     glutAddMenuEntry( "Abundant Numbers",value++);
     glutAddMenuEntry( "Deficient Numbers",value++);
-    glutAddMenuEntry( "Lucky",value++);
+    glutAddMenuEntry( "Lucky Numbers(Slow)",value++);
 
 
     //Menu for selecting number sequence type
