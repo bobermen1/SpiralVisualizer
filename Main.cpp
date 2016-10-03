@@ -121,6 +121,7 @@ void CreateMenus()
     glutAddMenuEntry( "Fibonacci", value++);
     glutAddMenuEntry( "Squares", value++);
     glutAddSubMenu( "Every Kth Number", EveryKthMenu);
+    glutAddMenuEntry( "Happy Numbers",value++);
 
 
 
@@ -168,6 +169,10 @@ void OtherMenuHandler(int item)
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
+        case 3:
+            currentGen = HAPPY;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
     }
 }
 

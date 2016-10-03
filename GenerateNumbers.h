@@ -8,6 +8,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <map>
+#include <set>
 #include <GL/freeglut.h>
 #include "Globals.h"
 
@@ -25,6 +27,7 @@ void OddRandomPercent(ll maxNumber);
 void GenerateFibonacci(ll maxNumber);
 void GenerateSquares(ll maxNumber);
 void GenerateEveryKth(ll maxNumber);
+void GenerateHappyNumbers(ll maxNumber);
 
 void GenerateNums(ll maxNumber);
 

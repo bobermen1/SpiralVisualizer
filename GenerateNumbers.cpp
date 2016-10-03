@@ -146,6 +146,48 @@ void GenerateEveryKth(ll maxNumber)
     }
 }
 
+void GenerateHappyNumbers(ll maxNumber)
+{
+    numbers.clear();
+    bool good;
+    ll number;
+    //for faster generation later
+    static map<ll, bool> cache;
+
+
+    for(ll i = 1; i < maxNumber; i++)
+    {
+        number = i;
+        set<ll> cycle;
+        while(number != 1 && !cycle.count(number))
+        {
+            if(cache.count(number))
+            {
+                number = cache[number] ? 1 : 0;
+                break;
+            }
+            cycle.insert(number);
+            ll newNumber = 0;
+            while(number > 0)
+            {
+                ll digit = number % 10;
+                newNumber += digit * digit;
+                number /= 10;
+            }
+            number = newNumber;
+        }
+        good  = number == 1;
+        for(auto it = cycle.begin(); it != cycle.end(); it++)
+        {
+            cache[*it] = good;
+        }
+        if(good)
+        {
+            numbers.push_back(i);
+        }
+    }
+}
+
 
 void GenerateNums(ll maxNumber)
 {
@@ -250,6 +292,10 @@ void GenerateNums(ll maxNumber)
             GenerateEveryKth(maxNumber);
             break;
 
+        case HAPPY:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Happy Numbers (Warning Slow!)").c_str());
+            GenerateHappyNumbers(maxNumber);
+            break;
 
         default:
             break;
