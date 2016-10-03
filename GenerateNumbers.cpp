@@ -211,6 +211,49 @@ void GenerateAbundantDeficient(ll maxNumber, classification cl)
     }
 }
 
+void GenerateLucky(ll maxNumber)
+{
+    numbers.clear();
+    vector<bool> sieve;
+    sieve.resize(maxNumber, true);
+    for(ll i = 2; i < maxNumber; i += 2)
+    {
+        sieve[i] = false;
+    }
+    ll cur = 3;
+    ll seen;
+    bool next;
+    while(cur < maxNumber)
+    {
+        seen = 0;
+        for(ll i = 1; i < maxNumber; i++)
+        {
+            if(sieve[i])
+            {
+                seen++;
+            }
+            if(seen == cur)
+            {
+                seen = 0;
+                sieve[i] = false;
+            }
+        }
+        next = false;
+        while(!next && cur < maxNumber)
+        {
+            cur++;
+            next = sieve[cur];
+        }
+    }
+    for(ll i = 1; i < maxNumber; i++)
+    {
+        if(sieve[i])
+        {
+            numbers.push_back(i);
+        }
+    }
+}
+
 void GenerateNums(ll maxNumber)
 {
     switch (currentGen)
@@ -327,6 +370,11 @@ void GenerateNums(ll maxNumber)
         case DEFICIENTS:
             glutSetWindowTitle(string(PROGRAM_NAME + " - Deficients").c_str());
             GenerateAbundantDeficient(maxNumber, DEFICIENT);
+            break;
+
+        case LUCKY:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Deficients").c_str());
+            GenerateLucky(maxNumber);
             break;
 
         default:

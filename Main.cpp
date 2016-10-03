@@ -131,6 +131,8 @@ void CreateMenus()
     glutAddMenuEntry( "Happy Numbers",value++);
     glutAddMenuEntry( "Abundant Numbers",value++);
     glutAddMenuEntry( "Deficient Numbers",value++);
+    glutAddMenuEntry( "Lucky",value++);
+
 
     //Menu for selecting number sequence type
     value = 1;
@@ -188,6 +190,11 @@ void OtherMenuHandler(int item)
             break;
         case 5:
             currentGen = DEFICIENTS;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 6:
+            currentGen = LUCKY;
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
