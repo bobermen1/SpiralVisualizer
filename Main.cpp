@@ -113,6 +113,13 @@ void CreateMenus()
     glutAddMenuEntry( "k = 08", value++);
     glutAddMenuEntry( "k = 09", value++);
     glutAddMenuEntry( "k = 10", value++);
+    glutAddMenuEntry( "k = 16", 16);
+    glutAddMenuEntry( "k = 32", 32);
+    glutAddMenuEntry( "k = 64", 64);
+    glutAddMenuEntry( "k = 128", 128);
+
+
+
 
 
 
@@ -122,8 +129,8 @@ void CreateMenus()
     glutAddMenuEntry( "Squares", value++);
     glutAddSubMenu( "Every Kth Number", EveryKthMenu);
     glutAddMenuEntry( "Happy Numbers",value++);
-
-
+    glutAddMenuEntry( "Abundant Numbers",value++);
+    glutAddMenuEntry( "Deficient Numbers",value++);
 
     //Menu for selecting number sequence type
     value = 1;
@@ -173,6 +180,17 @@ void OtherMenuHandler(int item)
             currentGen = HAPPY;
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
+            break;
+        case 4:
+            currentGen = ABUNDANTS;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 5:
+            currentGen = DEFICIENTS;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
     }
 }
 

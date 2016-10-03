@@ -28,6 +28,8 @@ void GenerateFibonacci(ll maxNumber);
 void GenerateSquares(ll maxNumber);
 void GenerateEveryKth(ll maxNumber);
 void GenerateHappyNumbers(ll maxNumber);
+enum classification {ABUNDANT, DEFICIENT};
+void GenerateAbundantDeficient(ll maxNumber, classification cl);
 
 void GenerateNums(ll maxNumber);
 

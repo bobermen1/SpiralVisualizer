@@ -188,6 +188,33 @@ void GenerateHappyNumbers(ll maxNumber)
     }
 }
 
+void GenerateAbundantDeficient(ll maxNumber, classification cl)
+{
+    numbers.clear();
+    for(ll n = 1; n < maxNumber; n++)
+    {
+        //get divisors
+        vector<ll> divisors;
+        for(ll i = 1; i < n / 2 + 1; i++)
+        {
+            if(n % i == 0)
+            {
+                divisors.push_back(i);
+            }
+        }
+
+        ll sum = accumulate( divisors.begin(), divisors.end(), 0);
+
+        if(sum < n && cl == DEFICIENT)
+        {
+            numbers.push_back(n);
+        }
+        else if(sum > n && cl == ABUNDANT)
+        {
+            numbers.push_back(n);
+        }
+    }
+}
 
 void GenerateNums(ll maxNumber)
 {
@@ -295,6 +322,16 @@ void GenerateNums(ll maxNumber)
         case HAPPY:
             glutSetWindowTitle(string(PROGRAM_NAME + " - Happy Numbers (Warning Slow!)").c_str());
             GenerateHappyNumbers(maxNumber);
+            break;
+
+        case ABUNDANTS:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Abundants").c_str());
+            GenerateAbundantDeficient(maxNumber, ABUNDANT);
+            break;
+
+        case DEFICIENTS:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Deficients").c_str());
+            GenerateAbundantDeficient(maxNumber, DEFICIENT);
             break;
 
         default:
