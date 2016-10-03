@@ -211,47 +211,74 @@ void GenerateAbundantDeficient(ll maxNumber, classification cl)
     }
 }
 
+ll next(vector<bool> & nums, ll i)
+{
+    for(ll l = i + 1; l < (ll)nums.size();l++)
+    {
+        if(nums[l] == false)
+        {
+            return l;
+        }
+    }
+    return nums.size() + 1;
+}
+
+ll which(vector<bool> & nums, ll i)
+{
+    ll k = 0,l;
+    for(l = 0; l < i; l++)
+    {
+        k = next(nums,k);
+    }
+    return k;
+}
+
 void GenerateLucky(ll maxNumber)
 {
     numbers.clear();
-    vector<bool> sieve;
-    sieve.resize(maxNumber, true);
+
+    vector<bool> nums;
+    nums.resize(maxNumber,false);
     for(ll i = 2; i < maxNumber; i += 2)
     {
-        sieve[i] = false;
+        nums[i] = true;
     }
-    ll cur = 3;
-    ll seen;
-    bool next;
-    while(cur < maxNumber)
+    ll k = 2;
+    ll j = 0;
+    ll l = 0;
+    ll p = 0;
+    for(ll i = 2; (k+k) < maxNumber; i++)
     {
-        seen = 0;
-        for(ll i = 1; i < maxNumber; i++)
+        k = which(nums,i);
+        l = 0;
+        p = 0;
+        ll sw = 0;
+        bool untrue=false;
+        for(j = 1; l < maxNumber; j++)
         {
-            if(sieve[i])
+            if((p==k) && sw == 1)
             {
-                seen++;
+                nums[l]=true;
+                untrue = true;
+                p = 0;
             }
-            if(seen == cur)
-            {
-                seen = 0;
-                sieve[i] = false;
-            }
+            l = next(nums,l);
+            p++;
+            sw = 1;
         }
-        next = false;
-        while(!next && cur < maxNumber)
+        if(!untrue)
         {
-            cur++;
-            next = sieve[cur];
+            break;
         }
     }
-    for(ll i = 1; i < maxNumber; i++)
+    for(ll i = 0; i < (ll)nums.size();i++)
     {
-        if(sieve[i])
+        if(!nums[i])
         {
             numbers.push_back(i);
         }
     }
+
 }
 
 void GenerateNums(ll maxNumber)
@@ -358,22 +385,22 @@ void GenerateNums(ll maxNumber)
             break;
 
         case HAPPY:
-            glutSetWindowTitle(string(PROGRAM_NAME + " - Happy Numbers (Warning Slow!)").c_str());
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Happy Numbers").c_str());
             GenerateHappyNumbers(maxNumber);
             break;
 
         case ABUNDANTS:
-            glutSetWindowTitle(string(PROGRAM_NAME + " - Abundants").c_str());
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Abundant Numbers").c_str());
             GenerateAbundantDeficient(maxNumber, ABUNDANT);
             break;
 
         case DEFICIENTS:
-            glutSetWindowTitle(string(PROGRAM_NAME + " - Deficients").c_str());
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Deficient Numbers").c_str());
             GenerateAbundantDeficient(maxNumber, DEFICIENT);
             break;
 
         case LUCKY:
-            glutSetWindowTitle(string(PROGRAM_NAME + " - Deficients").c_str());
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Lucky Numbers (Warning Slow!)").c_str());
             GenerateLucky(maxNumber);
             break;
 

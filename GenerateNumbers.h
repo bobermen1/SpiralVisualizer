@@ -30,6 +30,9 @@ void GenerateEveryKth(ll maxNumber);
 void GenerateHappyNumbers(ll maxNumber);
 enum classification {ABUNDANT, DEFICIENT};
 void GenerateAbundantDeficient(ll maxNumber, classification cl);
+
+ll which(vector<bool> & nums, ll i);
+ll next(vector<bool> & nums, ll i);
 void GenerateLucky(ll maxNumber);
 
 void GenerateNums(ll maxNumber);
