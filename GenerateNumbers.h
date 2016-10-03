@@ -22,6 +22,8 @@ void GenerateXPrimes(ll maxNumber, ll x, ll nums);
 void PureRandomPercent(ll maxNumber, double percent);
 void OddRandomPercent(ll maxNumber);
 void GenerateFibonacci(ll maxNumber);
+void GenerateSquares(ll maxNumber);
+
 void GenerateNums(ll maxNumber);
 
 

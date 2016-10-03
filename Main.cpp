@@ -28,6 +28,7 @@ void MainMenuHandler(int item);
     void TypeMenuHandler(int item);
         void PrimeMenuHandler(int item);
         void RandomMenuHandler(int item);
+        void OtherMenuHandler(int item);
     void StyleMenuHandler(int item);
 
 
@@ -99,7 +100,10 @@ void CreateMenus()
     glutAddMenuEntry( " 50%", value++);
     glutAddMenuEntry( "Odd Numbers", value++);
 
-
+    value = 1;
+    int OtherMenu = glutCreateMenu(OtherMenuHandler);
+    glutAddMenuEntry( "Fibonacci", value++);
+    glutAddMenuEntry( "Squares", value++);
 
 
     //Menu for selecting number sequence type
@@ -107,7 +111,8 @@ void CreateMenus()
     int TypeMenu = glutCreateMenu(TypeMenuHandler);
     glutAddSubMenu( "Primes", PrimeMenu);
     glutAddSubMenu( "Random", RandomMenu);
-    glutAddMenuEntry( "Fibonacci", value++);
+    glutAddSubMenu( "Other", OtherMenu);
+
 
     value = 1;
     int StyleMenu = glutCreateMenu(StyleMenuHandler);
@@ -123,6 +128,24 @@ void CreateMenus()
     glutAttachMenu( GLUT_RIGHT_BUTTON );
 }
 
+void OtherMenuHandler(int item)
+{
+    switch (item)
+    {
+        case 1: //regular primes
+            currentGen = FIBONACCI;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+        case 2:
+            currentGen = SQUARES;
+            GenerateNums(numMax + startNum - 1);
+            glutPostRedisplay();
+            break;
+    }
+}
+
+//handles selection of random number sequence generation
 void RandomMenuHandler(int item)
 {
     switch (item)
@@ -170,6 +193,7 @@ void RandomMenuHandler(int item)
     }
 }
 
+//Handels selection of prime generation
 void PrimeMenuHandler(int item)
 {
     switch (item)
@@ -204,22 +228,15 @@ void PrimeMenuHandler(int item)
             GenerateNums(numMax + startNum - 1);
             glutPostRedisplay();
             break;
-
-
     }
 }
 
+//handels selection of type
 void TypeMenuHandler(int item)
 {
-    switch (item)
-    {
-        case 1: //fibonacci is boring
-            currentGen = FIBONACCI;
-            GenerateNums(numMax + startNum - 1);
-            glutPostRedisplay();
-            break;
-    }
+
 }
+
 
 void StyleMenuHandler(int item)
 {

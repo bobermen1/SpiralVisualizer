@@ -145,9 +145,26 @@ void OddRandomPercent(ll maxNumber)
     numbers.resize(distance(numbers.begin(),it));
 }
 
+void GenerateSquares(ll maxNumber)
+{
+    numbers.clear();
+    ll count = 0;
+    ll num = 1;
+    while(num < maxNumber)
+    {
+        numbers.push_back(num);
+        count++;
+        num = pow(2,count);
+    }
+
+}
+
+
+
 void GenerateNums(ll maxNumber)
 {
-    switch (currentGen) {
+    switch (currentGen)
+    {
         //Primes
         case PRIMES:
             GenerateXPrimes(maxNumber, 1,1);
@@ -207,5 +224,12 @@ void GenerateNums(ll maxNumber)
             GenerateFibonacci(maxNumber);
             break;
 
+        case SQUARES:
+            GenerateSquares(maxNumber);
+            break;
+
+
+        default:
+            break;
     }
 }
