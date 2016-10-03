@@ -191,25 +191,20 @@ void GenerateHappyNumbers(ll maxNumber)
 void GenerateAbundantDeficient(ll maxNumber, classification cl)
 {
     numbers.clear();
+    vector<ll> sums;
+    sums.resize(maxNumber,0);
     for(ll n = 1; n < maxNumber; n++)
     {
-        //get divisors
-        vector<ll> divisors;
-        for(ll i = 1; i < n / 2 + 1; i++)
+        for(int i = n * 2; i < maxNumber; i += n)
         {
-            if(n % i == 0)
-            {
-                divisors.push_back(i);
-            }
+            sums[i] += n;
         }
 
-        ll sum = accumulate( divisors.begin(), divisors.end(), 0);
-
-        if(sum < n && cl == DEFICIENT)
+        if(sums[n] < n && cl == DEFICIENT)
         {
             numbers.push_back(n);
         }
-        else if(sum > n && cl == ABUNDANT)
+        else if(sums[n] > n && cl == ABUNDANT)
         {
             numbers.push_back(n);
         }
