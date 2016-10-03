@@ -159,6 +159,16 @@ void GenerateSquares(ll maxNumber)
 
 }
 
+void GenerateEveryKth(ll maxNumber)
+{
+    numbers.clear();
+    ll num = 1;
+    while(num < maxNumber)
+    {
+        numbers.push_back(num);
+        num += kVal;
+    }
+}
 
 
 void GenerateNums(ll maxNumber)
@@ -226,6 +236,10 @@ void GenerateNums(ll maxNumber)
 
         case SQUARES:
             GenerateSquares(maxNumber);
+            break;
+
+        case KTH_VALUE:
+            GenerateEveryKth(maxNumber);
             break;
 
 

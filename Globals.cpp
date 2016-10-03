@@ -13,6 +13,8 @@ int startNum = 1;
 
 ll numMax = ScreenHeight * ScreenHeight;
 
+ll kVal;
+
 generator currentGen = PRIMES;
 
 draw drawType = SQUARE_SPIRAL;

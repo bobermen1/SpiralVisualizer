@@ -19,10 +19,13 @@ void setNumMax();
 void GeneratePrimes(ll maxNumber);
 bool twin(ll i, ll j);
 void GenerateXPrimes(ll maxNumber, ll x, ll nums);
+
 void PureRandomPercent(ll maxNumber, double percent);
 void OddRandomPercent(ll maxNumber);
+
 void GenerateFibonacci(ll maxNumber);
 void GenerateSquares(ll maxNumber);
+void GenerateEveryKth(ll maxNumber);
 
 void GenerateNums(ll maxNumber);
 

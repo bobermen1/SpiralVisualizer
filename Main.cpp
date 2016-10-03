@@ -29,6 +29,7 @@ void MainMenuHandler(int item);
         void PrimeMenuHandler(int item);
         void RandomMenuHandler(int item);
         void OtherMenuHandler(int item);
+            void EveryKthMenuHandler(int item);
     void StyleMenuHandler(int item);
 
 
@@ -91,19 +92,36 @@ void CreateMenus()
 
     value = 1;
     int RandomMenu = glutCreateMenu(RandomMenuHandler);
-    glutAddMenuEntry( "  5%", value++);
-    glutAddMenuEntry( " 10%", value++);
-    glutAddMenuEntry( " 15%", value++);
-    glutAddMenuEntry( " 20%", value++);
-    glutAddMenuEntry( " 30%", value++);
-    glutAddMenuEntry( " 40%", value++);
-    glutAddMenuEntry( " 50%", value++);
+    glutAddMenuEntry( " 5%", value++);
+    glutAddMenuEntry( "10%", value++);
+    glutAddMenuEntry( "15%", value++);
+    glutAddMenuEntry( "20%", value++);
+    glutAddMenuEntry( "30%", value++);
+    glutAddMenuEntry( "40%", value++);
+    glutAddMenuEntry( "50%", value++);
     glutAddMenuEntry( "Odd Numbers", value++);
+
+    value = 1;
+    int EveryKthMenu = glutCreateMenu(EveryKthMenuHandler);
+    glutAddMenuEntry( "k = 01", value++);
+    glutAddMenuEntry( "k = 02", value++);
+    glutAddMenuEntry( "k = 03", value++);
+    glutAddMenuEntry( "k = 04", value++);
+    glutAddMenuEntry( "k = 05", value++);
+    glutAddMenuEntry( "k = 06", value++);
+    glutAddMenuEntry( "k = 07", value++);
+    glutAddMenuEntry( "k = 08", value++);
+    glutAddMenuEntry( "k = 09", value++);
+    glutAddMenuEntry( "k = 10", value++);
+
+
 
     value = 1;
     int OtherMenu = glutCreateMenu(OtherMenuHandler);
     glutAddMenuEntry( "Fibonacci", value++);
     glutAddMenuEntry( "Squares", value++);
+    glutAddSubMenu( "Every Kth Number", EveryKthMenu);
+
 
 
     //Menu for selecting number sequence type
@@ -126,6 +144,14 @@ void CreateMenus()
     glutAddMenuEntry( "Exit", value++);
 
     glutAttachMenu( GLUT_RIGHT_BUTTON );
+}
+
+void EveryKthMenuHandler(int item)
+{
+    currentGen = KTH_VALUE;
+    kVal = item;
+    GenerateNums(numMax + startNum - 1);
+    glutPostRedisplay();
 }
 
 void OtherMenuHandler(int item)
