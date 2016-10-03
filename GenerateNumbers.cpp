@@ -15,32 +15,8 @@ void setNumMax()
     }
 }
 
-//Prime generation with sieve using bits in a char array for generation
-void GeneratePrimes(ll maxNumber)
-{
-    numbers.clear();
-    char * sieve;
-    sieve = new (nothrow) char[maxNumber/8+1];
-    memset(sieve, 0xFF, (maxNumber/8+1) * sizeof(char));
-    for(ll i = 2; i <= maxNumber; i++)
-    {
-        //get bit at position i in array of chars
-        if(sieve[i/8] & (0x01 << (i % 8)))
-        {
-            numbers.push_back(i);
-
-            for(ll j = 0; j <= maxNumber; j += i)
-            {
-                //set false for all positions j in char array
-                sieve[j/8] &= ~(0x01 << (j % 8));
-            }
-        }
-    }
-    //free up memory
-    delete [] sieve;
-}
-
 //Generates list a primes that are X appart nums amount of times
+//Primes are generated using sieve method with char array
 //example GenerateXPrimes(maxNumber, 1, 1) = all primes
 //        GenerateXPrimes(maxNumber, 2, 2) = twin primes
 //        GenerateXPrimes(maxNumber, 2, 3) = triplet primes
@@ -177,68 +153,100 @@ void GenerateNums(ll maxNumber)
     {
         //Primes
         case PRIMES:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - All Primes").c_str());
             GenerateXPrimes(maxNumber, 1,1);
             break;
         case TWIN_PRIMES:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Twin Primes").c_str());
             GenerateXPrimes(maxNumber, 2,2);
             break;
         case TRIPLET_PRIMES:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Triplet Primes").c_str());
             GenerateXPrimes(maxNumber, 2,3);
             break;
         case SEPARATED_BY_FOUR:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - All Primes Separated by Four").c_str());
             GenerateXPrimes(maxNumber, 4,2);
             break;
         case SEPARATED_BY_SIX:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - All Primes Separated by Six").c_str());
             GenerateXPrimes(maxNumber, 6,2);
             break;
         case SEPARATED_BY_TWELVE:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - All Primes Separated by Twelve").c_str());
             GenerateXPrimes(maxNumber, 12,2);
             break;
 
 
         //random
         case FIVE_PERCENT:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Random 5% fill").c_str());
             PureRandomPercent(maxNumber, .05);
             break;
 
         case TEN_PERCENT:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Random 10% fill").c_str());
             PureRandomPercent(maxNumber, .1);
             break;
 
         case FIFTEEN_PERCENT:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Random 15% fill").c_str());
             PureRandomPercent(maxNumber, .15);
             break;
 
         case TWENTY_PERCENT:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Random 20% fill").c_str());
             PureRandomPercent(maxNumber, .2);
             break;
 
         case THIRTY_PERCENT:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Random 30% fill").c_str());
             PureRandomPercent(maxNumber, .3);
             break;
 
         case FOURTY_PERCENT:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Random 40% fill").c_str());
             PureRandomPercent(maxNumber, .4);
             break;
 
         case FIFTY_PERCENT:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Random 50% fill").c_str());
             PureRandomPercent(maxNumber, .5);
             break;
 
         case RANDOM_ODDS:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Random Odd Numbers").c_str());
             OddRandomPercent(maxNumber);
             break;
 
         //Other
         case FIBONACCI:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Fibonacci").c_str());
             GenerateFibonacci(maxNumber);
             break;
 
         case SQUARES:
+            glutSetWindowTitle(string(PROGRAM_NAME + " - Squares of Two").c_str());
             GenerateSquares(maxNumber);
             break;
 
         case KTH_VALUE:
+            if(kVal > 3)
+            {
+                glutSetWindowTitle(string(PROGRAM_NAME + " - Every " + to_string(kVal) + "th Number").c_str());
+            }
+            else if(kVal == 3)
+            {
+                glutSetWindowTitle(string(PROGRAM_NAME + " - Every 3rd Number").c_str());
+            }
+            else if(kVal == 2)
+            {
+                glutSetWindowTitle(string(PROGRAM_NAME + " - Every 2nd Number").c_str());
+            }
+            else if(kVal == 1)
+            {
+                glutSetWindowTitle(string(PROGRAM_NAME + " - Every Number").c_str());
+            }
             GenerateEveryKth(maxNumber);
             break;
 

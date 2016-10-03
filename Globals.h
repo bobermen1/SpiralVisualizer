@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <cmath>
+#include <string>
 #include <GL/freeglut.h>
 
 using namespace std;
@@ -11,6 +12,8 @@ typedef long long ll;
 
 extern int ScreenWidth;
 extern int ScreenHeight;
+
+const string PROGRAM_NAME = "Spirals";
 
 extern ll numMax;
 
